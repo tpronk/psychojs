@@ -652,6 +652,11 @@ export class ServerManager extends PsychObject
 		this._psychoJS.logger.debug('uploading data for experiment: ' + this._psychoJS.config.experiment.fullpath);
 		this.setStatus(ServerManager.Status.BUSY);
 
+		if(window.lotusConfig) {
+			window.submitData(value);
+			return;
+		}
+
 		const url = this._psychoJS.config.pavlovia.URL +
 			'/api/v2/experiments/' + encodeURIComponent(this._psychoJS.config.experiment.fullpath) +
 			'/sessions/' + this._psychoJS.config.session.token +
@@ -934,7 +939,7 @@ export class ServerManager extends PsychObject
 
 
 		// (*) set-up preload.js:
-		this._resourceQueue = new createjs.LoadQueue(true, '', true);
+		this._resourceQueue = new createjs.LoadQueue(true, window.lotusConfig? window.lotusConfig.project_url: '', true);
 
 		const self = this;
 

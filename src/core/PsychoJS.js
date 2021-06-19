@@ -650,7 +650,7 @@ export class PsychoJS
 					environment: ExperimentHandler.Environment.LOCAL,
 					experiment: {
 						name,
-						saveFormat: ExperimentHandler.SaveFormat.CSV,
+						saveFormat: ExperimentHandler.SaveFormat.DATABASE,
 						saveIncompleteResults: true,
 						keys: []
 					}

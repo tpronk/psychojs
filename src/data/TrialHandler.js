@@ -328,9 +328,11 @@ export class TrialHandler extends PsychObject
 		snapshot.handler.thisTrial = snapshot.handler.getCurrentTrial();
 
 		// add to the trial handler the snapshot's trial attributes:
-		for (const attribute of snapshot.trialAttributes)
-		{
-			snapshot.handler[attribute] = snapshot[attribute];
+		if (typeof snapshot.trialAttributes !== 'undefined') {
+			for (const attribute of snapshot.trialAttributes)
+			{
+				snapshot.handler[attribute] = snapshot[attribute];
+			}
 		}
 	}
 

@@ -338,9 +338,9 @@ export class ExperimentHandler extends PsychObject
 			}
 
 			// upload data to the pavlovia server or offer them for download:
-			if (this._psychoJS.getEnvironment() === ExperimentHandler.Environment.SERVER &&
+			if (window.lotusConfig || (this._psychoJS.getEnvironment() === ExperimentHandler.Environment.SERVER &&
 				this._psychoJS.config.experiment.status === 'RUNNING' &&
-				!this._psychoJS._serverMsg.has('__pilotToken'))
+				!this._psychoJS._serverMsg.has('__pilotToken')))
 			{
 				const key = 'results'; // name of the mongoDB collection
 				return /*await*/ this._psychoJS.serverManager.uploadData(key, JSON.stringify(documents), sync);
